@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_initial_template/src/service/lang_service.dart';
+import 'package:flutter_initial_template/src/view/main_view.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
@@ -33,11 +34,7 @@ class MainApp extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       locale: context.watch<LangService>().currentLocale,
-      home: const Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+      home: const MainView(),
     );
   }
 }

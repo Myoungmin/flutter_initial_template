@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../util/helper/intl_helper.dart';
+import 'package:flutter_initial_template/util/helper/intl_helper.dart';
 
 class LangService with ChangeNotifier {
   LangService({
