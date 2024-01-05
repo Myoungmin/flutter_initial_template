@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_initial_template/src/service/lang_service.dart';
+import 'package:flutter_initial_template/src/service/theme_service.dart';
 import 'package:flutter_initial_template/src/view/main_view.dart';
+import 'package:flutter_initial_template/util/lang/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-
-import 'util/lang/generated/l10n.dart';
 
 void main() {
   runApp(
@@ -12,7 +12,10 @@ void main() {
       providers: [
         ChangeNotifierProvider(
           create: (context) => LangService(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ThemeService(),
+        ),
       ],
       child: const MainApp(),
     ),
@@ -34,6 +37,7 @@ class MainApp extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       locale: context.watch<LangService>().currentLocale,
+      theme: context.themeService.themeData,
       home: const MainView(),
     );
   }
