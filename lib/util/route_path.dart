@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_initial_template/src/view/main_view.dart';
+import 'package:flutter_initial_template/src/view/main/main_view.dart';
 
 abstract class RoutePath {
   static const String main = 'main';
