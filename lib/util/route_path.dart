@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_initial_template/src/view/main/main_view.dart';
+import 'package:flutter_initial_template/theme/component/constrained_screen.dart';
 
 abstract class RoutePath {
   static const String main = 'main';
@@ -13,7 +14,7 @@ abstract class RoutePath {
     }
 
     return MaterialPageRoute(
-      builder: (context) => page,
+      builder: (context) => ConstrainedScreen(child: page),
     );
   }
 }

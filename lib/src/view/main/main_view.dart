@@ -3,6 +3,7 @@ import 'package:flutter_initial_template/src/service/theme_service.dart';
 import 'package:flutter_initial_template/src/view/base_view.dart';
 import 'package:flutter_initial_template/src/view/main/main_view_model.dart';
 import 'package:flutter_initial_template/theme/component/base_dialog.dart';
+import 'package:flutter_initial_template/theme/res/layout.dart';
 import 'package:flutter_initial_template/util/lang/generated/l10n.dart';
 
 class MainView extends StatelessWidget {
@@ -55,7 +56,12 @@ class MainView extends StatelessWidget {
               );
             },
             child: Text(
-              S.current.hello,
+              context.layout(
+                S.current.desktop,
+                mobile: S.current.mobile,
+                tablet: S.current.tablet,
+                desktop: S.current.desktop,
+              ),
               style: context.textTheme.displayLarge?.copyWith(
                 color: context.colorScheme.onSurface,
               ),

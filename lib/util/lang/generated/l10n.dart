@@ -69,6 +69,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Mobile`
+  String get mobile {
+    return Intl.message(
+      'Mobile',
+      name: 'mobile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tablet`
+  String get tablet {
+    return Intl.message(
+      'Tablet',
+      name: 'tablet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Desktop`
+  String get desktop {
+    return Intl.message(
+      'Desktop',
+      name: 'desktop',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
