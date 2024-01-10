@@ -1,4 +1,5 @@
 {
     "@@locale": "ko",
-    "hello": "안녕"
+    "hello": "안녕",
+    "cancel": "취소"
 }
