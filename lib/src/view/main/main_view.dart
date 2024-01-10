@@ -4,7 +4,6 @@ import 'package:flutter_initial_template/src/view/base_view.dart';
 import 'package:flutter_initial_template/src/view/main/main_view_model.dart';
 import 'package:flutter_initial_template/theme/component/base_dialog.dart';
 import 'package:flutter_initial_template/util/lang/generated/l10n.dart';
-import 'package:flutter_initial_template/util/route_path.dart';
 
 class MainView extends StatelessWidget {
   const MainView({super.key});
@@ -44,9 +43,10 @@ class MainView extends StatelessWidget {
                             color: context.theme.colorScheme.onSurface,
                           ),
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           Navigator.pop(context);
-                          Navigator.pushNamed(context, RoutePath.main);
+                          await Future.delayed(const Duration(seconds: 1));
+                          await viewModel.circularIndicatorTest(2);
                         },
                       ),
                     ],
