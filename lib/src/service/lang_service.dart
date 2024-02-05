@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_initial_template/util/helper/intl_helper.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LangService with ChangeNotifier {
+final langServiceProvider =
+    StateNotifierProvider<LangServiceNotifier, LangService>(
+        (ref) => LangServiceNotifier());
+
+class LangService {
   LangService({
     Locale? currentLocale,
   }) : currentLocale = currentLocale ?? IntlHelper.en;
 
   Locale currentLocale;
+}
+
+class LangServiceNotifier extends StateNotifier<LangService> {
+  LangServiceNotifier() : super(LangService());
 
   void setLang(Language lang) {
-    currentLocale = lang.locale;
-    notifyListeners();
+    state.currentLocale = lang.locale;
   }
 }

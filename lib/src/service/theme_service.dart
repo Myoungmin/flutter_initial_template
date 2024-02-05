@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_initial_template/theme/foundation/app_theme.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ThemeService with ChangeNotifier {
+final themeServiceProvider =
+    StateNotifierProvider<ThemeServiceNotifier, ThemeService>(
+        (ref) => ThemeServiceNotifier());
+
+class ThemeService {
   ThemeService({
     AppTheme? theme,
   }) : theme = theme ?? AppTheme();
 
   // 현재 테마
   AppTheme theme;
-
-  void toggleTheme() {
-    if (theme.brightness == Brightness.light) {
-      theme = AppTheme(brightness: Brightness.dark);
-    } else {
-      theme = AppTheme(brightness: Brightness.light);
-    }
-    notifyListeners();
-  }
 
   ThemeData get themeData {
     return ThemeData(
@@ -37,8 +32,20 @@ class ThemeService with ChangeNotifier {
   }
 }
 
-extension ThemeServiceExt on BuildContext {
-  ThemeService get themeService => watch<ThemeService>();
+class ThemeServiceNotifier extends StateNotifier<ThemeService> {
+  ThemeServiceNotifier() : super(ThemeService());
+
+  void toggleTheme() {
+    if (state.theme.brightness == Brightness.light) {
+      state.theme = AppTheme(brightness: Brightness.dark);
+    } else {
+      state.theme = AppTheme(brightness: Brightness.light);
+    }
+  }
+}
+
+extension ThemeServiceExt on WidgetRef {
+  ThemeService get themeService => watch(themeServiceProvider);
   AppTheme get theme => themeService.theme;
   ColorScheme get colorScheme => theme.colorScheme;
   TextTheme get textTheme => theme.textTheme;

@@ -4,29 +4,21 @@ import 'package:flutter_initial_template/src/service/theme_service.dart';
 import 'package:flutter_initial_template/util/lang/generated/l10n.dart';
 import 'package:flutter_initial_template/util/route_path.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => LangService(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => ThemeService(),
-        ),
-      ],
-      child: const MainApp(),
+    const ProviderScope(
+      child: MainApp(),
     ),
   );
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
@@ -36,8 +28,8 @@ class MainApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      locale: context.watch<LangService>().currentLocale,
-      theme: context.themeService.themeData,
+      locale: ref.watch(langServiceProvider).currentLocale,
+      theme: ref.themeService.themeData,
       initialRoute: RoutePath.main,
       onGenerateRoute: RoutePath.onGenerateRoute,
     );
