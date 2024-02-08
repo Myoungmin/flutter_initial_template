@@ -28,7 +28,7 @@ class MainApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      locale: ref.watch(langServiceProvider).currentLocale,
+      locale: ref.watch(langServiceProvider),
       theme: ref.themeService.themeData,
       initialRoute: RoutePath.main,
       onGenerateRoute: RoutePath.onGenerateRoute,
